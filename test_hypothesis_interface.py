@@ -1,5 +1,5 @@
 import hypothesis_interface
-
+import daily_mailer
 
 from flask import Flask, request, render_template, redirect, url_for, jsonify
 import os
@@ -39,6 +39,15 @@ def add_annotation():
     response = {
         'state': result.status_code,
         'text': annotation_text,
+        'response': result.json()
+    }
+    return jsonify(response)
+
+@app.route('/send_email', methods=['GET','POST'])
+def add_annotation():
+    result = daily_mailer.send_simple_message()
+    response = {
+        'state': result.status_code,
         'response': result.json()
     }
     return jsonify(response)
