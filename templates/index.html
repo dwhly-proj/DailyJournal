@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <title>Hypothesis Test</title>
+    <style>
+        .progress {
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <h2>Add Annottion</h2>
+    <!--<button onclick="start_long_task();">Start Long Calculation</button><br><br>-->
+    <label for="annotation_text"> Annotation</label>
+    <textarea id="annotation_text"></textarea>
+    <button id="post_new_annotation">Post!</button><br><br>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+        function post_annotation() {
+            $.ajax({
+                type: 'POST',
+                url: '/add_annotation',
+                data: { annotation_text: $('#annotation_text').val()},
+                success: function(data, status, request) {
+                    console.log(data)
+                },
+                error: function() {
+                    alert('Unexpected error');
+                }
+            });
+        }
+        $(function() {
+            $('#post_new_annotation').click(post_annotation);
+        });
+    </script>
+  </body>
+</html>
