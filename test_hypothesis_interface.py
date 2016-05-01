@@ -44,7 +44,7 @@ def add_annotation():
     return jsonify(response)
 
 @app.route('/send_email', methods=['GET','POST'])
-def add_annotation():
+def send_email():
     result = daily_mailer.send_simple_message()
     response = {
         'state': result.status_code,
