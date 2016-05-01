@@ -1,4 +1,5 @@
 import requests
+import os
 
 def create_annotation(secret, message):
     headers = {'Accept': 'application/json',
@@ -7,12 +8,12 @@ def create_annotation(secret, message):
                }
     payload = {
         "uri": "http://my.journal",
-        "user": "acct:joebloggs@example.org",
+        "user": "acct:{}".format(os.environ['MAIL_RECIPIENT']),
         "permissions": {
             "read": ["group:__world__"],
-            "update": ["acct:joebloggs@example.org"],
-            "delete": ["acct:joebloggs@example.org"],
-            "admin": ["acct:joebloggs@example.org"],
+            "update": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
+            "delete": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
+            "admin": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
         },
         "document": {},
         "target": [],
