@@ -6,7 +6,7 @@ def create_annotation(secret, message):
                'Authorization': 'Bearer {}'.format(secret)
                }
     payload = {
-        "uri": "http://myjournal",
+        "uri": "http://my.journal",
         "user": "acct:joebloggs@example.org",
         "permissions": {
             "read": ["group:__world__"],

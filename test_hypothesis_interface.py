@@ -16,14 +16,29 @@ def index():
 
 
 @app.route('/inbound_email', methods=['POST'])
-def add_annotation():
+def inbound_email():
     #annotation_text = request.form['annotation_text']
     #print annotation_text
 
-    result = hypothesis_interface.create_annotation(os.environ['HYPOTHESIS_SECRET'], "Testing123")
+    annotation_text = request.form['stripped-text']
+    print annotation_text
+    result = hypothesis_interface.create_annotation(os.environ['HYPOTHESIS_SECRET'], annotation_text)
     response = {
         'state': result.status_code,
-        'text': "pass",
+        'text': annotation_text,
+        'response': result.json()
+    }
+    return jsonify(response)
+
+@app.route('/add_annotation', methods=['POST'])
+def add_annotation():
+    annotation_text = request.form['annotation_text']
+    print annotation_text
+
+    result = hypothesis_interface.create_annotation(os.environ['HYPOTHESIS_SECRET'], annotation_text)
+    response = {
+        'state': result.status_code,
+        'text': annotation_text,
         'response': result.json()
     }
     return jsonify(response)
