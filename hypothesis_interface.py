@@ -10,7 +10,7 @@ def create_annotation(secret, message):
         "uri": "http://my.journal",
         "user": "acct:{}".format(os.environ['MAIL_RECIPIENT']),
         "permissions": {
-            "read": ["group:__world__"],
+            "read": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
             "update": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
             "delete": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
             "admin": ["acct:{}".format(os.environ['MAIL_RECIPIENT'])],
