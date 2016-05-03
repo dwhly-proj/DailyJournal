@@ -5,13 +5,24 @@
     <title>Hypothesis Button Test</title>
 </head>
 <body>
-    <a href="" class = 'hypothesis_status'>Test</a>
+    <a href="" class = 'hypothesis_status'></a>
 
     <script>
         function reqListener () {
             console.log(this.responseText);
             respObj = JSON.parse(this.responseText);
-            document.querySelector('.hypothesis_status').innerHTML = respObj.total
+            var imageDiv = document.createElement("div");
+            imageDiv.style.backgroudImage = url('http://hypothesisjournal.herokuapp.com/static/icon.png');
+            imageDiv.style.backgroundRepeat = 'no-repeat';
+            imageDiv.style.width = '25px';
+            imageDiv.style.width = '30px';
+            document.querySelector('.hypothesis_status').appendChild(imageDiv);
+
+            var countDiv = document.createElement("div");
+            countDiv.style.textAlign = 'center';
+            countDiv.innerHTML = respObj.total;
+            document.querySelector('.hypothesis_status').appendChild(countDiv);
+
         }
 
         var oReq = new XMLHttpRequest();
