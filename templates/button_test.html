@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hypothesis Button Test</title>
+</head>
+<body>
+    <a href="" class = 'hypothesis_status'>Test</a>
+
+    <script>
+        function reqListener () {
+            console.log(this.responseText);
+            respObj = JSON.parse(this.responseText);
+            document.querySelector('.hypothesis_status').innerHTML = respObj.total
+        }
+
+        var oReq = new XMLHttpRequest();
+        oReq.addEventListener("load", reqListener);
+        oReq.open("GET", "https://hypothes.is//api/search?uri=" + window.location.href);
+        oReq.send();
+    </script>
+</body>
+</html>

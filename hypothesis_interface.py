@@ -8,7 +8,7 @@ def create_annotation(secret, message):
                }
     payload = {
         "uri": "http://my.journal",
-        "user": "acct:{}".format(os.environ['MAIL_RECIPIENT']),
+        "user": "acct:{}".format(os.environ['HYPOTHESIS_USER']),
         "permissions": {
             "read": ["acct:{}".format(os.environ['HYPOTHESIS_USER'])],
             "update": ["acct:{}".format(os.environ['HYPOTHESIS_USER'])],

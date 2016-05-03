@@ -14,6 +14,11 @@ def index():
 
     return redirect(url_for('index'))
 
+@app.route('/buttontest', methods=['GET'])
+def button_test():
+    if request.method == 'GET':
+        return render_template('button_test.html')
+
 
 @app.route('/inbound_email', methods=['POST'])
 def inbound_email():
