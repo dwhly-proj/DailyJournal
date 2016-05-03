@@ -12,10 +12,10 @@
             console.log(this.responseText);
             respObj = JSON.parse(this.responseText);
             var imageDiv = document.createElement("div");
-            imageDiv.style.backgroudImage = "url('http://hypothesisjournal.herokuapp.com/static/icon.png')";
+            imageDiv.style.backgroundImage = "url('http://hypothesisjournal.herokuapp.com/static/icon.png')";
             imageDiv.style.backgroundRepeat = 'no-repeat';
             imageDiv.style.width = '25px';
-            imageDiv.style.width = '30px';
+            imageDiv.style.height = '30px';
             document.querySelector('.hypothesis_status').appendChild(imageDiv);
 
             var countDiv = document.createElement("div");
