@@ -5,8 +5,24 @@
     <title>Hypothesis Button Test</title>
 </head>
 <body>
-    <a href="" class = 'hypothesis_status'></a>
+    <div class = 'hypothesis_status'></div>
     <script>
+
+        function toggle_visibility() {
+            console.log('clicked');
+            var e = document.querySelector('.annotator-frame');
+            if(!e || e.style.display == 'none') {
+                if(e)
+                    e.style.display = 'block';
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = "https://hypothes.is/embed.js";
+                script.async = false;
+                document.head.appendChild(script);
+            }
+            else if (e)
+                e.style.display = 'none';
+        }
         function reqListener () {
             console.log(this.responseText);
             respObj = JSON.parse(this.responseText);
@@ -17,17 +33,11 @@
             imageDiv.style.width = '25px';
             imageDiv.style.height = '30px';
             document.querySelector('.hypothesis_status').appendChild(imageDiv);
-
             var countDiv = document.createElement("div");
             countDiv.style.textAlign = 'center';
             countDiv.innerHTML = respObj.total;
             document.querySelector('.hypothesis_status').appendChild(countDiv);
-
-            var script = document.createElement('script');
-            script.type = 'text/javascript';
-            script.src = "https://hypothes.is/embed.js";
-            script.async = false;
-            document.head.appendChild(script);
+            document.querySelector('.hypothesis_status').addEventListener("click", toggle_visibility);
         }
         document.querySelector('.hypothesis_status').style.float = 'left';
         var oReq = new XMLHttpRequest();
