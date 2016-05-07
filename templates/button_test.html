@@ -16,12 +16,16 @@
                     e.style.display = 'block';
                 var script = document.createElement('script');
                 script.type = 'text/javascript';
+                script.id = 'hypothesis_embed_script';
                 script.src = "https://hypothes.is/embed.js";
                 script.async = false;
                 document.head.appendChild(script);
             }
-            else if (e)
-                e.style.display = 'none';
+            else {
+                if (e)
+                    e.style.display = 'none';
+                document.head.removeChild(document.getElementById('hypothesis_embed_script'));
+            }
         }
         function reqListener () {
             console.log(this.responseText);
@@ -40,6 +44,7 @@
             document.querySelector('.hypothesis_status').addEventListener("click", toggle_visibility);
         }
         document.querySelector('.hypothesis_status').style.float = 'left';
+        document.querySelector('.hypothesis_status').style.cursor = 'pointer';
         var oReq = new XMLHttpRequest();
         oReq.addEventListener("load", reqListener);
         oReq.open("GET", "https://hypothes.is//api/search?uri=" + window.location.href);
