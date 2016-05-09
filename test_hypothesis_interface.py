@@ -20,7 +20,7 @@ def button_test():
         return render_template('button_test.html')
 
 @app.route('/widget', methods=['GET'])
-def button_test():
+def widget():
     if request.method == 'GET':
         return render_template('widget.html')
 
