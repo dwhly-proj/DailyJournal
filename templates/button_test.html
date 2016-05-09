@@ -6,49 +6,6 @@
 </head>
 <body>
     <div class = 'hypothesis_status'></div>
-    <script>
-
-        function toggle_visibility() {
-            console.log('clicked');
-            var e = document.querySelector('.annotator-frame');
-            if(!e || e.style.display == 'none') {
-                if(e)
-                    e.style.display = 'block';
-                var script = document.createElement('script');
-                script.type = 'text/javascript';
-                script.id = 'hypothesis_embed_script';
-                script.src = "https://hypothes.is/embed.js";
-                script.async = false;
-                document.head.appendChild(script);
-            }
-            else {
-                if (e)
-                    e.style.display = 'none';
-                document.head.removeChild(document.getElementById('hypothesis_embed_script'));
-            }
-        }
-        function reqListener () {
-            console.log(this.responseText);
-            respObj = JSON.parse(this.responseText);
-            var imageDiv = document.createElement("div");
-            imageDiv.style.backgroundImage = "url('http://hypothesisjournal.herokuapp.com/static/icon.png')";
-            imageDiv.style.backgroundRepeat = 'no-repeat';
-            imageDiv.style.backgroundSize = 'contain';
-            imageDiv.style.width = '25px';
-            imageDiv.style.height = '30px';
-            document.querySelector('.hypothesis_status').appendChild(imageDiv);
-            var countDiv = document.createElement("div");
-            countDiv.style.textAlign = 'center';
-            countDiv.innerHTML = respObj.total;
-            document.querySelector('.hypothesis_status').appendChild(countDiv);
-            document.querySelector('.hypothesis_status').addEventListener("click", toggle_visibility);
-        }
-        document.querySelector('.hypothesis_status').style.float = 'left';
-        document.querySelector('.hypothesis_status').style.cursor = 'pointer';
-        var oReq = new XMLHttpRequest();
-        oReq.addEventListener("load", reqListener);
-        oReq.open("GET", "https://hypothes.is//api/search?uri=" + window.location.href);
-        oReq.send();
-    </script>
+    <script>function toggle_visibility(){var e=document.querySelector(".annotator-frame");if(e&&"none"!=e.style.display)e&&(e.style.display="none"),document.head.removeChild(document.getElementById("hypothesis_embed_script"));else{e&&(e.style.display="block");var t=document.createElement("script");t.type="text/javascript",t.id="hypothesis_embed_script",t.src="https://hypothes.is/embed.js",t.async=!1,document.head.appendChild(t)}}function reqListener(){console.log(this.responseText),respObj=JSON.parse(this.responseText);var e=document.createElement("div");e.style.backgroundImage="url('http://hypothesisjournal.herokuapp.com/static/icon.png')",e.style.backgroundRepeat="no-repeat",e.style.backgroundSize="contain",e.style.width="25px",e.style.height="30px",document.querySelector(".hypothesis_status").appendChild(e);var t=document.createElement("div");t.style.textAlign="center",t.innerHTML=respObj.total,document.querySelector(".hypothesis_status").appendChild(t),document.querySelector(".hypothesis_status").addEventListener("click",toggle_visibility)}document.querySelector(".hypothesis_status").style["float"]="left",document.querySelector(".hypothesis_status").style.cursor="pointer";var oReq=new XMLHttpRequest;oReq.addEventListener("load",reqListener),oReq.open("GET","https://hypothes.is//api/search?uri="+window.location.href),oReq.send();</script>
 </body>
 </html>

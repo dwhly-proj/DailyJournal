@@ -19,6 +19,10 @@ def button_test():
     if request.method == 'GET':
         return render_template('button_test.html')
 
+@app.route('/widget', methods=['GET'])
+def button_test():
+    if request.method == 'GET':
+        return render_template('widget.html')
 
 @app.route('/inbound_email', methods=['POST'])
 def inbound_email():
